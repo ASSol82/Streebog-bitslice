@@ -2,7 +2,7 @@
 #define __FUNCTIONS_SSE__
 
 
-#include "VectorTypeSSE.h"
+#include "VectorType.h"
 #include <stdint.h>
 #include <stddef.h> // для определения size_t
 

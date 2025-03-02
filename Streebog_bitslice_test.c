@@ -6,13 +6,13 @@
 #include <inttypes.h>
 #include <string.h>
 #include <time.h>
-#include "VectorTypeSSE.h"
-#include "FunctionsSSE.h"
-#include "PiCoordFuncSSE.h"
-#include "LPS_bitslice_SSE.h"
+#include "VectorType.h"
+#include "Functions.h"
+#include "Pi_bitslice.h"
+#include "LPS_bitslice.h"
 #include "LogicalOperations.h"
-#include "Streebog_bitslice_SSE.h"
-#include "Streebog_bitslice_SSE_test.h"
+#include "Streebog_bitslice.h"
+#include "Streebog_bitslice_test.h"
 
 
 struct message_test

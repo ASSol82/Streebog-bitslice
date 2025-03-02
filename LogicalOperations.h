@@ -4,7 +4,7 @@
 #define __SETTINGS__
 
 
-#include "VectorTypeSSE.h"
+#include "VectorType.h"
 
 
 #if MaxCountMessage==512

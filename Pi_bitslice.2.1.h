@@ -2,7 +2,7 @@
 #define __PICOORDFUNC_BITSLICE_SSE__
 
 
-#include "VectorTypeSSE.h"
+#include "VectorType.h"
 #include "LogicalOperations.h"
 
 

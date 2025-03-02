@@ -4,7 +4,7 @@
 
 
 #include "LogicalOperations.h"
-#include "FunctionsSSE.h"
+#include "Functions.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>

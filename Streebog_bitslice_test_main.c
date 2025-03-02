@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
-#include "FunctionsSSE.h"
-#include "PiCoordFuncSSE.h"
-#include "Streebog_bitslice_SSE_test.h"
+#include "Functions.h"
+#include "Pi_bitslice.h"
+#include "Streebog_bitslice_test.h"
 
 
 int main(int argc, char* argv[])

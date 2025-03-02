@@ -2,8 +2,8 @@
 #define __PICOORDFUNC__
 
 
-#include "VectorTypeSSE.h"
-#include "PiCoordFuncSSE.2.1.h"
+#include "VectorType.h"
+#include "Pi_bitslice.2.1.h"
 
 
 #ifdef __cplusplus

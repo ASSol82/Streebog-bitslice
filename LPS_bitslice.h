@@ -2,7 +2,7 @@
 #define __LPS_BITSLICE_SSE__
 
 
-#include "VectorTypeSSE.h"
+#include "VectorType.h"
 
 
 #ifdef __cplusplus

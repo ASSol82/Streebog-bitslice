@@ -5,10 +5,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-#include "LPS_bitslice_SSE.h"
-#include "Streebog_bitslice_SSE.h"
+#include "LPS_bitslice.h"
+#include "Streebog_bitslice.h"
 #include "LogicalOperations.h"
-#include "FunctionsSSE.h"
+#include "Functions.h"
 
 
 // можно раскомментировать этот участок

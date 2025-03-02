@@ -1,9 +1,9 @@
 
 
 #include "LogicalOperations.h"
-#include "PiCoordFuncSSE.h"
-#include "LPS_bitslice_SSE.h"
-#include "FunctionsSSE.h"
+#include "Pi_bitslice.h"
+#include "LPS_bitslice.h"
+#include "Functions.h"
 
 
 #define _SWAP_VECTOR(a,b) __temp__=a; a=b; b=__temp__;
