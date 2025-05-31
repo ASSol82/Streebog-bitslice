@@ -6,7 +6,9 @@ Bitslice (bit-parallel) implementation of the Streebog algorithm from GOST 34.11
 
 ### Linux
 
-At the command prompt, type
+Download the repository to your local disk and go to the **Streebog-bitslice** directory.
+
+At the command prompt from **Streebog-bitslice** directory, type
 
 **make**
 
