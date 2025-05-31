@@ -39,6 +39,10 @@ void SetArrayByteToBitSlice(int num, const uint8_t src[64], T* dst)
 #if MaxCountMessage==256
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 6980916 (CTCrypt 2025 20250601_1)
 /*
 // __m256i x
 //#define transpose8x8_4_macros(x) { \
@@ -59,6 +63,8 @@ void SetArrayByteToBitSlice(int num, const uint8_t src[64], T* dst)
 */
 
 
+=======
+>>>>>>> 5d91de8 (CTCrypt 2025 20250601_1)
 // функция транспонирования, в src предварительно подготовленные блоки
 //void ConvertToBitSlice_32x32(__m256i w256[4], uint32_t* p32)
 //{
@@ -173,13 +179,6 @@ void ConvertMsgToBitSlice_Stage2(const struct message_context* msg, const uint32
 			(pos) > RB(i) ? 0 : (pos) < RB(i) ? GetU8(i,CB(i)+(pos)) : \
 			(GetU8(i,CB(i)+(pos)) & (0xFFU>>(8-RemainedBits(i)))) | (0x1U<<(RemainedBits(i))) \
 		) // формируется корректное 8-битовое значение для 3-го раунда
-/*#define GetU8_Stage3(i,pos) ((i)>=countMessage?0:( \
-			(pos) > RB(i) ? 0 : (pos) < RB(i) ? GetU8(i,CB(i)+(pos)) : \
-			(GetU8(i,CB(i)+(pos)) & (0xFFU>>(8-RemainedBits(i)))) | (0x1U<<(RemainedBits(i))) \
-		)) // формируется корректное 8-битовое значение для 3-го раунда*/
-/*		// ниже извлекается 32-х битовое значение для заполнения векторов __m256i
-		//#define GetU32_Stage3_(i,pos) ((i)>=countMessage?0:((uint32_t)GetU8_Stage3(i,pos) | (uint32_t)GetU8_Stage3(i,pos+1)<<8 | \
-		//							(uint32_t)GetU8_Stage3(i,pos+2)<<16 | (uint32_t)GetU8_Stage3(i,pos+3)<<24))*/
 #define GetU32_Stage3_(i,pos) ((i)<countMessage?(pos)+4>RB(i)?((uint32_t)GetU8_Stage3(i,pos) | (uint32_t)GetU8_Stage3(i,pos+1)<<8 | \
 							(uint32_t)GetU8_Stage3(i,pos+2)<<16 | (uint32_t)GetU8_Stage3(i,pos+3)<<24):GetU32(i,CB(i)+pos):0)
 #define GetU32_Stage3(i) GetU32_Stage3_(i,n)
@@ -202,75 +201,7 @@ void ConvertMsgToBitSlice_Stage3(const struct message_context* msg, const uint32
 }
 
 
-//!!! 20250507 переделай с использованием ConvertToBitSlice_32x32
-//void ConvertHashFromBitSlice_all(const T h[512], const uint32_t countMessage, const uint32_t hashLength, uint8_t(*hash_value)[64])
-//{
-//	_ALIGN(32) const __m256i c1 = _mm256_set1_epi64x(0xAA55AA55AA55AA55LL);
-//	_ALIGN(32) const __m256i c2 = _mm256_set1_epi64x(0x00AA00AA00AA00AALL);
-//	_ALIGN(32) const __m256i c3 = _mm256_set1_epi64x(0xCCCC3333CCCC3333LL);
-//	_ALIGN(32) const __m256i c4 = _mm256_set1_epi64x(0x0000CCCC0000CCCCLL);
-//	_ALIGN(32) const __m256i c5 = _mm256_set1_epi64x(0xF0F0F0F00F0F0F0FLL);
-//	_ALIGN(32) const __m256i c6 = _mm256_set1_epi64x(0x00000000F0F0F0F0LL);
-//	_ALIGN(32) const __m256i perm = _mm256_set_epi8(15, 7, 14, 6, 13, 5, 12, 4, 11, 3, 10, 2, 9, 1, 8, 0, 15, 7, 14, 6, 13, 5, 12, 4, 11, 3, 10, 2, 9, 1, 8, 0);
-//	_ALIGN(32) const __m256i perm8x32 = _mm256_set_epi32(7, 6, 3, 2, 5, 4, 1, 0);
-//	_ALIGN(32) const __m256i perm_final = _mm256_set_epi8(15, 14, 7, 6, 13, 12, 5, 4, 11, 10, 3, 2, 9, 8, 1, 0, 15, 14, 7, 6, 13, 12, 5, 4, 11, 10, 3, 2, 9, 8, 1, 0);
-//	const uint32_t shift = (hashLength == 256 ? 256 : 0);
-//	const uint32_t countByte = (hashLength == 256 ? 32 : 64); // количество байт в хеш-значении
-//	uint32_t j;
-//
-//	for (j = 0; j < countMessage; j += 8) // обрабатываем результат по порциям в 8 хеш-значений
-//	{
-//		uint8_t* p = ((uint8_t*)h) + (sizeof(T) * shift) + (j >> 3); // указатель на начало массива T h[512] смещенного по номеру сообщения кратного 8 и смещенного в зависимости от длины хеш-значения
-//		for (uint32_t nb = 0; nb < countByte; nb += 4) //по номерам байтов хеш-значений
-//		{
-//			_ALIGN(32) __m256i w256 = _mm256_set_epi64x(
-//				(uint64_t)p[sizeof(T) * 24] | (uint64_t)p[sizeof(T) * 25] << 8 | (uint64_t)p[sizeof(T) * 26] << 16 | (uint64_t)p[sizeof(T) * 27] << 24 |
-//				(uint64_t)p[sizeof(T) * 28] << 32 | (uint64_t)p[sizeof(T) * 29] << 40 | (uint64_t)p[sizeof(T) * 30] << 48 | (uint64_t)p[sizeof(T) * 31] << 56,
-//				(uint64_t)p[sizeof(T) * 16] | (uint64_t)p[sizeof(T) * 17] << 8 | (uint64_t)p[sizeof(T) * 18] << 16 | (uint64_t)p[sizeof(T) * 19] << 24 |
-//				(uint64_t)p[sizeof(T) * 20] << 32 | (uint64_t)p[sizeof(T) * 21] << 40 | (uint64_t)p[sizeof(T) * 22] << 48 | (uint64_t)p[sizeof(T) * 23] << 56,
-//				(uint64_t)p[sizeof(T) * 8] | (uint64_t)p[sizeof(T) * 9] << 8 | (uint64_t)p[sizeof(T) * 10] << 16 | (uint64_t)p[sizeof(T) * 11] << 24 |
-//				(uint64_t)p[sizeof(T) * 12] << 32 | (uint64_t)p[sizeof(T) * 13] << 40 | (uint64_t)p[sizeof(T) * 14] << 48 | (uint64_t)p[sizeof(T) * 15] << 56,
-//				(uint64_t)p[0] | (uint64_t)p[sizeof(T)] << 8 | (uint64_t)p[sizeof(T) * 2] << 16 | (uint64_t)p[sizeof(T) * 3] << 24 |
-//				(uint64_t)p[sizeof(T) * 4] << 32 | (uint64_t)p[sizeof(T) * 5] << 40 | (uint64_t)p[sizeof(T) * 6] << 48 | (uint64_t)p[sizeof(T) * 7] << 56
-//			);
-//
-//			//			uint64_t w = (uint64_t)p[0] | (uint64_t)p[sizeof(T)] << 8 |
-//			//				(uint64_t)p[sizeof(T) * 2] << 16 | (uint64_t)p[sizeof(T) * 3] << 24 |
-//			//				(uint64_t)p[sizeof(T) * 4] << 32 | (uint64_t)p[sizeof(T) * 5] << 40 |
-//			//				(uint64_t)p[sizeof(T) * 6] << 48 | (uint64_t)p[sizeof(T) * 7] << 56;
-//			//			transpose8x8_macros(w);
-//			//			for (int k = 0; k < (j + 8 <= countMessage ? 8 : (countMessage & 7)); ++k)
-//			//			{
-//			//				hash_value[j + k][i] = (w >> (k << 3));
-//			//			}
-//
-//			transpose8x8_4_macros(w256)
-//				w256 = _mm256_shuffle_epi8(w256, perm); // собираю по 2 байта
-//			w256 = _mm256_permutevar8x32_epi32(w256, perm8x32); // делаю перестановку среди 32-х битовых переменных, чтобы байты сообщений 1..4 оказались в левом 128-битовом векторе, а байты сообщений 5..8 в правом 128-битовом векторе
-//			w256 = _mm256_shuffle_epi8(w256, perm_final); // собираю по 4 байта
-//			_ALIGN(32) uint32_t w[8];
-//			_mm256_store_si256((__m256i*)w, w256);
-//
-//			for (int k = 0; k < (j + 8 <= countMessage ? 8 : (countMessage & 7)); ++k)
-//			{
-//				*((uint32_t*)&hash_value[j + k][nb]) = w[k];
-//				//				uint32_t *p_dst32=(uint32_t*)hash_value[j + k];
-//				//				p_dst32[nb] = w[k];
-//			}
-//			//			p_dst32[0]=w[0]; p_dst32[4]=w[1];
-//			//			p_dst32[8]=w[2]; p_dst32[12]=w[3];
-//			//			p_dst32[16]=w[4]; p_dst32[20]=w[5];
-//			//			p_dst32[24]=w[6]; p_dst32[28]=w[7];
-//
-//						//p_src += ((sizeof(T)<<3)*4);
-//						//p_dst32+=1;
-//			p += (sizeof(T) << 5); // переходим к следующей четверке байтов среди bitslice векторов, поэтому смещаемся на 32 вектора T
-//		}
-//	}
-//}
-
-
-//!!! 20250531 переделываю
+// 20250531
 void ConvertHashFromBitSlice_all(const T h[512], const uint32_t countMessage, const uint32_t hashLength, uint8_t(*hash_value)[64])
 {
 	const uint32_t shift = (hashLength == 256 ? 256 : 0);
