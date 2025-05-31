@@ -18,5 +18,5 @@ At the command prompt, type for example
 
 where
 
-the first parameter is number of messages, in our example, **256**,
+the first parameter is number of messages, in our example, **256** messages,
 the second parameter is the message length in bits, in our example, **1048576** bits.
