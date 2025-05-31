@@ -4,13 +4,21 @@ Bitslice (bit-parallel) implementation of the Streebog algorithm from GOST 34.11
 
 ## Compilation
 
-At the command prompt, type 
+### Linux
+
+At the command prompt, type
 
 **make**
 
 After running make, a file named **Streebog_bitslice_test** should be created in the current directory.
 
+### In other operating systems
+
+Compile files from the repository in a convenient way.
+
 ## Run
+
+### Linux
 
 At the command prompt, type for example
 
