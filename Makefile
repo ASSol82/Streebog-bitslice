@@ -8,7 +8,7 @@ CFLAGS = -Wall -mavx2
 CFLAGS += -O2 -DNDEBUG
 LDFLAGS =
 
-APP_NAME = streebog_bitslice_test
+APP_NAME = Streebog_bitslice_test
 APP_SOURCES = $(wildcard *.c)
 APP_OBJECTS = $(APP_SOURCES:%.c=%.o)
 
