@@ -8,6 +8,9 @@
 #include <immintrin.h> // AVX2 __m256i. для AVX-512 включить -mavx512f -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512ifma -mavx512vbmi
 
 
+#define MaxCountMessage 256
+
+
 #ifndef MaxCountMessage
 #define MaxCountMessage 256
 #endif

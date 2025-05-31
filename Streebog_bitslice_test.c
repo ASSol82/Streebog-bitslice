@@ -155,7 +155,7 @@ int Streebog_bitslice_SSE_array_test(uint32_t hashLength)
 }
 
 
-void Streebog_bitslice_SSE_array_ControlValue(uint32_t countTestMessage, uint64_t messageLength, uint32_t hashLength)
+void Streebog_bitslice_test_ControlValue(uint32_t countTestMessage, uint64_t messageLength, uint32_t hashLength)
 {
 	uint32_t v = 0x12345678; // init value
 	int i, j;
@@ -189,10 +189,15 @@ void Streebog_bitslice_SSE_array_ControlValue(uint32_t countTestMessage, uint64_
 	printf("data size %" PRIu64 " Mb\n", dataSizeMb);
 	fflush(stdout);
 
+	//!!!
+	struct streebog_bitslice_context ctx;
+	streebog_bitslice_context_init(&ctx);
+
 	msg = malloc(sizeof(msg[0]) * countTestMessage);
 	for (j = 0; j < countTestMessage; ++j)
 	{
 		msg[j].lengthInBits = messageLength;
+		//msg[j].M = aligned_malloc(memoryNeed, sizeof(T));
 		msg[j].M = malloc(memoryNeed);
 		for (i = 0; i < memoryNeed; i += 4) // заполняем всю выделенную память, кратную 4 байтам
 		{
@@ -213,7 +218,8 @@ void Streebog_bitslice_SSE_array_ControlValue(uint32_t countTestMessage, uint64_
 	for (n = 0; n < countTestMessage; n += load_vector)
 	{
 		const int cycleLen = (n + load_vector < countTestMessage ? load_vector : countTestMessage - n);
-		Streebog_bitslice(msg + n, cycleLen, hashLength, h + n);
+		//Streebog_bitslice(msg + n, cycleLen, hashLength, h + n);
+		Streebog_bitslice_ctx(&ctx, msg + n, cycleLen, hashLength, h + n);
 	}
 
 	timespec_get(&endTime3, TIME_UTC);
@@ -242,10 +248,13 @@ void Streebog_bitslice_SSE_array_ControlValue(uint32_t countTestMessage, uint64_
 
 	for (j = 0; j < countTestMessage; ++j)
 	{
+		//aligned_free(msg[j].M);
 		free(msg[j].M);
 	}
 	free(msg);
 	free(h);
+	//!!!
+	streebog_bitslice_context_free(&ctx);
 
 	double speed = (double)dataSizeMb / cpuTimeUsed;
 	printf("Speed %f Mb/sec\n", speed);

@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
 //	Streebog_bitslice_SSE_array_test(512); // verify bitslice for 512 bits hash value
 
 	// benchmark Speed Mbytes/sec = ((double)countTestMessage*(double)lengthMessageInBits) / 8388608.f / elapsedTimeInSeconds
-	Streebog_bitslice_SSE_array_ControlValue(countTestMessage, lengthMessageInBits, 256);
+	Streebog_bitslice_test_ControlValue(countTestMessage, lengthMessageInBits, 256);
 
 	return 0;
 }

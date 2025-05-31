@@ -21,7 +21,7 @@
 
 #elif MaxCountMessage==256
 
-#define MALLOCALIGN 64
+#define MALLOCALIGN 32
 #define _ZERORIGHT _mm256_setzero_si256() // _mm256_set1_epi32(0)
 #define _ZERO(a) ((a) = _mm256_setzero_si256()) // _mm256_set1_epi32(0) // _mm256_setzero_si256()
 #define _XOR(a,b) _mm256_xor_si256((a), (b))
@@ -29,6 +29,8 @@
 #define _OR(a,b) _mm256_or_si256((a), (b))
 #define _AND(a,b) _mm256_and_si256((a), (b))
 #define _ANDNOT(a,b) _mm256_andnot_si256((a), (b))
+#define _SHIFTR64(a,count) _mm256_srli_epi64(a, count) // сдвиг в сторону младших разрядов в рамках 64-х битовых отрезков
+#define _SHIFTL64(a,count) _mm256_slli_epi64(a, count) // сдвиг в сторону старших разрядов в рамках 64-х битовых отрезков
 #define IsZero(v) _mm256_testz_si256((v), (v))
 
 #elif MaxCountMessage==128
