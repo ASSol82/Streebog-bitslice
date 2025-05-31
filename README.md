@@ -12,7 +12,7 @@ After running make, a file named Streebog_bitslice_test should be created in the
 
 ## Run
 
-At the command prompt, type
+At the command prompt, type for example
 
 ./Streebog_bitslice_test 256 1048576
 
