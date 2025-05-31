@@ -30,3 +30,12 @@ where
 
 the first parameter is number of messages, in our example, **256** messages,
 the second parameter is the message length in bits, in our example, **1048576** bits.
+
+## Testbench
+
+Computer with Intel Core i5 8400 processor.
+
+**./Streebog_bitslice_test 1048576 504**    ->  58 Mbytes/sec
+**./Streebog_bitslice_test 256 10485760**    ->  178 Mbytes/sec
+
+
