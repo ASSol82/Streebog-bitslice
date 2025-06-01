@@ -37,5 +37,9 @@ Computer with Intel Core i5 8400 processor.
 
 **./Streebog_bitslice_test 1048576 504**    ->  The computing speed is 58 MBytes per second.
 
+**./Streebog_bitslice_test 65536 65536**    ->  The computing speed is 174 MBytes per second.
+
 **./Streebog_bitslice_test 256 10485760**    ->  The computing speed is 178 MBytes per second.
+
+The slower calculation for short messages is explained by the fact that for short messages the 3rd stage of the Stribog algorithm is performed proportionally more. The third stage is more laborious than the second stage, because in the third stage, the compression function g is called three times, and in the second stage, the compression function is called only once.
 
