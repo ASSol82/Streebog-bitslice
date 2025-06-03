@@ -1,4 +1,4 @@
-### Licence
+### LICENSE
 
 **CC BY-ND-NC**
 
