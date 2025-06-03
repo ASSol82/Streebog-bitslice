@@ -43,3 +43,12 @@ Computer with Intel Core i5 8400 processor.
 
 The slower calculation for short messages is explained by the fact that for short messages the 3rd stage of the Stribog algorithm is performed proportionally more. The third stage is more laborious than the second stage, because in the third stage, the compression function **g** is called three times, and in the second stage, the compression function is called only once.
 
+## Author
+
+Solovyev Anatoly Sergeevich
+
+## Licence
+
+NonCommercial
+
+Only non commercial use.
