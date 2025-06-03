@@ -33,7 +33,7 @@ the second parameter is the message length in bits, in our example, **1048576** 
 
 ## Testbench
 
-Computer with Intel Core i5 8400 processor.
+Computer with Intel Core i5 8400 processor. Running on a single core, without parallelization.
 
 **./Streebog_bitslice_test 1048576 504**    ->  The computing speed is 58 MBytes per second.
 
@@ -58,8 +58,10 @@ Only non commercial use.
 ## Comment
 
 The link to this repository is located in a paper
+
 **Anatoly Sergeevich Solovyev and Denis Bonislavovich Fomin
 Bitsliced implementations of the «Streebog» and «Kuznechik» algorithms**
+
 published at the CTCRYPT 2025 conference.
 
 
