@@ -47,7 +47,9 @@ The slower calculation for short messages is explained by the fact that for shor
 
 Solovyev Anatoly Sergeevich
 
-## Licence
+## LICENSE
+
+**CC BY-ND-NC**
 
 NonCommercial
 
