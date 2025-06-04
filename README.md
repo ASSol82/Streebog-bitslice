@@ -46,6 +46,7 @@ The slower calculation for short messages is explained by the fact that for shor
 ## Author
 
 Solovyev Anatoly Sergeevich
+
 email: soloviov-anatoly@mail.ru
 
 ## LICENSE
