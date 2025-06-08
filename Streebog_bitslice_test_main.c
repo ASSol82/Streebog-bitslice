@@ -10,8 +10,8 @@
 
 int main(int argc, char* argv[])
 {	
-	uint32_t countTestMessage = 1048576;
-	uint64_t lengthMessageInBits = 504; //1016; //504;
+	uint32_t countTestMessage = 256; //1048576;
+	uint64_t lengthMessageInBits = 10485760; //504; //1016; //504;
 	int i;
 
 	for (i = 1; i < argc; i++)
