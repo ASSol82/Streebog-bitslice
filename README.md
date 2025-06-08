@@ -1,6 +1,6 @@
 # Streebog bitslice 
 
-Bitslice (bit-parallel) implementation of the Streebog (Stribog) algorithm from GOST 34.11—2018
+Bitslice (bit-parallel) implementation of the Streebog (Stribog) algorithm from GOST 34.11-2018
 
 ## Compilation
 
