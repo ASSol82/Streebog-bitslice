@@ -2,6 +2,10 @@
 
 **CC BY-NC-ND**
 
+Follow the link below for more details.
+
+https://creativecommons.org/licenses/by-nc-nd/4.0/
+
 Brief description of license.
 
 You are free to:
